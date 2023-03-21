@@ -30,7 +30,6 @@ function socket({ io }: { io: Server }) {
      * When a user creates a new room
      */
     socket.on(EVENTS.CLIENT.CREATE_ROOM, ({ roomName }) => {
-      console.log({ roomName });
       // create a roomId
       const roomId = nanoid();
       // add a new room to the rooms object
@@ -57,7 +56,6 @@ function socket({ io }: { io: Server }) {
       EVENTS.CLIENT.SEND_ROOM_MESSAGE,
       ({ roomId, message, username }) => {
         const date = new Date();
-        console.log({ roomId, message, username });
         socket.to(roomId).emit(EVENTS.SERVER.ROOM_MESSAGE, {
           message,
           username,
